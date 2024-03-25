@@ -1,0 +1,66 @@
+@startuml
+' Определяем сущности
+entity User {
+    *userId: int
+    --
+    username: string
+    password: string
+    email: string
+    phoneNumber: string
+}
+
+entity Account {
+    *accountId: int
+    --
+    userId: int
+    currencies: Currency
+    count: decimal
+}
+
+entity Currency {
+    *currencyId: int
+    --
+    name: string
+    symbol: string
+}
+
+entity PriceHistory {
+    *priceHistoryId: int
+    --
+    currencyId: int
+    timestamp: datetime
+    buyPrice: decimal
+    sellPrice: decimal
+}
+
+entity Order {
+    *orderId: int
+    --
+    accountId: int
+    currencyId: int
+    type: string
+    amount: decimal
+    price: decimal
+    expirationDate: datetime
+    status: string
+    createdAt: datetime
+}
+
+entity Transaction {
+    *transactionId: int
+    --
+    orderId: int
+    type: string
+    amount: decimal
+    price: decimal
+    date: datetime
+}
+
+' Определяем связи
+User -- Account
+Account -- Currency
+Currency -- PriceHistory
+Account -- Order
+Order -- Transaction
+
+@enduml

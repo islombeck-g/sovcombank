@@ -1,0 +1,35 @@
+@startuml
+node "Web Browser" {
+    [User Interface]
+}
+
+node "Web Server" {
+    [Web Application]
+    [Authentication]
+    [Order Management]
+    [Currency Management]
+}
+
+database "Database" {
+    [Users]
+    [Accounts]
+    [Currencies]
+    [Price History]
+    [Orders]
+    [Transactions]
+}
+
+node "External Systems" {
+    [News API]
+    [AI/ML]
+}
+
+[User Interface] --> [Web Application]
+[Web Application] --> [Authentication]
+[Web Application] --> [Order Management]
+[Web Application] --> [Currency Management]
+[Order Management] --> [Database]
+[Currency Management] --> [Database]
+[Web Application] --> [News API]
+[Web Application] --> [AI/ML]
+@enduml
